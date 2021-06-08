@@ -1,0 +1,113 @@
+<aw-wizard>
+  <aw-wizard-step stepTitle="Step 1">
+    <h2>Step 1</h2>
+    <form [formGroup]="nameForm" (ngSubmit)="finishSteps()" novalidate>
+      <div class="form-group">
+        <label>Name</label>
+        <div class="input-group">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="fas fa-user fa-fw"></i>
+            </div>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter name"
+            formControlName="name"
+            [ngClass]="{'is-invalid':nameControl.touched && nameForm.invalid, 'is-valid':nameForm.valid}"
+            />
+
+        </div>
+        <div *ngIf="nameControl.errors">
+          <div *ngIf="nameControl.touched && nameControl.errors.required" class="invalid-feedback">
+            <i class="fas fa-times fa-fw"></i> Name required
+          </div>
+        </div>
+      </div>
+    </form>
+    <hr />
+    <div class="d-flex justify-content-end align-items-center">
+      <button class="btn btn-success" type="button" awNextStep [disabled]="nameForm.invalid">
+        Siguiente paso <i class="fas fa-arrow-right fa-fw"></i>
+      </button>
+    </div>
+  </aw-wizard-step>
+  <aw-wizard-step stepTitle="Step 2">
+    <h2>Step 2</h2>
+    <form [formGroup]="emailForm" novalidate>
+      <div class="form-group">
+        <label>Email</label>
+        <div class="input-group">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="fas fa-envelope fa-fw"></i>
+            </div>
+          </div>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Enter email"
+            formControlName="email"
+            [ngClass]="{'is-invalid':emailControl.touched && emailForm.invalid, 'is-valid':emailForm.valid}" />
+        </div>
+        <div *ngIf="emailControl.errors">
+           <div *ngIf="emailControl.touched && emailControl.errors.required" type="button" class="invalid-feedback">
+              <i class="fas fa-times fa-fw"></i> Email required
+           </div>
+           <div *ngIf="emailControl.touched && emailControl.errors.email" type="button" class="invalid-feedback">
+             <i class="fas fa-times fa-fw"></i> Email is invalid
+           </div>
+        </div>
+      </div>
+    </form>
+    <hr />
+    <div class="d-flex justify-content-end align-items-center">
+      <div class="btn-group">
+        <button class="btn btn-danger" awPreviousStep>
+          <i class="fas fa-arrow-left fa-fw"></i> Paso anterior
+        </button>
+        <button class="btn btn-success" awNextStep [disabled]="emailForm.invalid">
+          Siguiente paso <i class="fas fa-arrow-right fa-fw"></i>
+        </button>
+      </div>
+    </div>
+  </aw-wizard-step>
+  <aw-wizard-step stepTitle="Step 3">
+    <h2>Step 3</h2>
+    <form [formGroup]="usernameForm" novalidate>
+      <div class="form-group">
+        <label>Username</label>
+        <div class="input-group">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="fas fa-user fa-fw"></i>
+            </div>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter username"
+            formControlName="username"
+            [ngClass]="{'is-invalid':usernameControl.touched && usernameControl.invalid, 'is-valid':usernameControl.valid}"/>
+        </div>
+        <div *ngIf="usernameControl.errors">
+          <div *ngIf="usernameControl.touched && usernameControl.errors.required" class="invalid-feedback">
+            <i class="fas fa-times fa-fw"></i> Username is invalid
+          </div>
+        </div>
+      </div>
+    </form>
+    <hr />
+    <div class="d-flex justify-content-end align-items-center">
+      <div class="btn-group">
+        <button class="btn btn-danger" type="button" awPreviousStep>
+          <i class="fas fa-arrow-left fa-fw"></i> Paso anterior
+        </button>
+        <button class="btn btn-primary" type="submit" [disabled]="usernameForm.invalid">
+          <i class="fas fa-check fa-fw"></i> Finalizar
+        </button>
+      </div>
+    </div>
+  </aw-wizard-step>
+</aw-wizard>
